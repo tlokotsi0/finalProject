@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlexFlow | Workout Architect</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/main.js" type="module"></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <h1>Flex<span>Flow</span></h1>
+            <div class="genre-bar" id="muscle-filters">
+                <button data-muscle="abs">Abs</button>
+                <button data-muscle="biceps">Biceps</button>
+                <button data-muscle="back">Back</button>
+                <button data-muscle="chest">Chest</button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section id="exercise-list-container">
+            <ul class="exercise-list"></ul>
+        </section>
+    </main>
+
+    <template id="exercise-card-template">
+        <li class="exercise-card">
+            <img src="" alt="" loading="lazy">
+            <h3 class="exercise-name"></h3>
+            <p class="exercise-target"></p>
+            <button class="add-to-routine">Add to Routine</button>
+        </li>
+    </template>
+</body>
+</html>
