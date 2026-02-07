@@ -44,4 +44,43 @@ export default class WorkoutList {
     renderList(list) {
         renderListWithTemplate(exerciseTemplate, this.listElement, list, true);
     }
+
+    
+
+    renderList(list) {
+        renderListWithTemplate(exerciseTemplate, this.listElement, list, true);
+
+        const cards = this.listElement.querySelectorAll(".exercise-card");
+        cards.forEach((card, index) => {
+        card.addEventListener("click", () => {
+            this.showModal(list[index]);
+        });
+        });
+    }
+
+    showModal(exercise) {
+        const modal = document.getElementById("exercise-modal");
+        const details = document.getElementById("modal-details");
+
+        const instructions = exercise.instructions 
+            ? exercise.instructions.map(step => `<li>${step}</li>`).join("") 
+            : "No instructions available.";
+
+        details.innerHTML = `
+            <h2>${exercise.name.toUpperCase()}</h2>
+            <img src="https://exercisedb.p.rapidapi.com/image/${exercise.id}?rapidapi-key=YOUR_KEY" alt="${exercise.name}">
+            <div class="modal-info">
+                <p><strong>Body Part:</strong> ${exercise.bodyPart}</p>
+                <p><strong>Equipment:</strong> ${exercise.equipment}</p>
+                <p><strong>Target Muscle:</strong> ${exercise.target}</p>
+            </div>
+            <h3>Instructions</h3>
+            <ol>${instructions}</ol>
+        `;
+
+        modal.style.display = "block";
+
+        modal.querySelector(".close-modal").onclick = () => modal.style.display = "none";
+        window.onclick = (event) => { if (event.target == modal) modal.style.display = "none"; };
+    }
 }

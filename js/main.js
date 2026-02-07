@@ -4,15 +4,20 @@ import WorkoutList from "./WorkoutList.mjs";
 const dataSource = new ExternalServices();
 const listElement = document.querySelector(".exercise-list");
 
-// Initial load
-const workout = new WorkoutList("abs", dataSource, listElement);
-workout.init();
+const workout = new WorkoutList(dataSource, listElement);
 
-// Handle filter clicks
+workout.init("abs", "target");
+
 document.querySelector("#muscle-filters").addEventListener("click", (e) => {
     if (e.target.tagName === "BUTTON") {
         const muscle = e.target.dataset.muscle;
-        const newWorkout = new WorkoutList(muscle, dataSource, listElement);
-        newWorkout.init();
+        workout.init(muscle, "target"); 
+    }
+});
+
+document.querySelector("#search-btn").addEventListener("click", () => {
+    const query = document.querySelector("#search-input").value.toLowerCase().trim();
+    if (query) {
+        workout.init(query, "bodyPart");
     }
 });

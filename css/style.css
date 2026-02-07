@@ -6,27 +6,179 @@
     --font: 'Poppins', sans-serif;
 }
 
-body { font-family: var(--font); background-color: #f4f4f4; margin: 0; }
+body { 
+    font-family: var(--font); 
+    background-color: #f4f4f4; 
+    margin: 0; }
 
-header { background: var(--secondary); color: white; padding: 1rem; text-align: center; }
+header { 
+    background: var(--secondary); 
+    color: white; 
+    padding: 1rem; 
+    text-align: center; }
 
-.genre-bar { display: flex; justify-content: center; gap: 10px; padding: 1rem; flex-wrap: wrap; }
+.genre-bar { 
+    display: flex; 
+    justify-content: center; 
+    gap: 10px; 
+    padding: 1rem; 
+    flex-wrap: wrap; }
 
-button { background: var(--primary); color: white; border: none; padding: 0.5rem 1rem; cursor: pointer; transition: 0.3s; }
-button:hover { background: var(--details); }
+.genre-bar::-webkit-scrollbar {
+    display: none; 
+}
 
-/* Animation Requirement [cite: 55] */
+button { 
+    background: var(--primary); 
+    color: white; 
+    border: none; 
+    padding: 0.5rem 1rem; 
+    cursor: pointer; 
+    transition: 0.3s; }
+
+button:hover { 
+    background: var(--details);
+ }
+
+/* Animation Requirement */
 @keyframes slideIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+    from { 
+        opacity: 0; 
+        transform: translateY(20px); }
+    to { 
+        opacity: 1; 
+        transform: translateY(0); }
 }
 
 .exercise-card {
-    list-style: none; background: white; padding: 1rem; border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1); animation: slideIn 0.5s ease-out;
+    border: 1px solid #ddd;
+    margin: 10px;
+    padding: 10px;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+.exercise-card img {
+    width: 100%;
+    max-width: 300px; 
+    height: auto;
+    display: block;
+    margin: 0 auto;
 }
 
 /* Grid for Desktop Wireframe [cite: 24] */
 @media (min-width: 768px) {
-    .exercise-list { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; padding: 20px; }
+    .exercise-list { 
+        display: grid; 
+        grid-template-columns: repeat(4, 1fr); 
+        gap: 20px; 
+        padding: 20px; }
+}
+
+/* Container to center everything */
+.search-wrapper {
+    background-color: #222; 
+    padding: 20px 0;
+    display: flex;
+    justify-content: center;
+    border-bottom: 1px solid #444;
+}
+
+.search-container {
+    display: flex;
+    width: 90%;
+    max-width: 600px;
+    gap: 0; 
+}
+
+/* The Input Field */
+#search-input {
+    flex-grow: 1;
+    padding: 12px 15px;
+    background-color: #333;
+    border: 1px solid #555;
+    border-radius: 5px 0 0 5px; 
+    color: #fff;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+#search-input:focus {
+    border-color: #888;
+    background-color: #3a3a3a;
+}
+
+/* The Search Button */
+#search-btn {
+    padding: 12px 25px;
+    background-color: #555; 
+    color: white;
+    border: 1px solid #555;
+    border-radius: 0 5px 5px 0; 
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+#search-btn:hover {
+    background-color: #777;
+}
+
+#search-btn:active {
+    transform: scale(0.98);
+}
+
+.search-icon {
+    margin-right: 5px;
+}
+
+/* The Modal (background) */
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1000; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    background-color: rgba(0,0,0,0.8); /* Black w/ opacity */
+}
+
+/* Modal Content Box */
+.modal-content {
+    background-color: #222;
+    color: white;
+    margin: 5% auto; 
+    padding: 20px;
+    border: 1px solid #444;
+    width: 80%; 
+    max-width: 600px;
+    border-radius: 10px;
+    max-height: 80vh;
+    overflow-y: auto; /* Scrollable if text is long */
+}
+
+.close-modal {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-modal:hover { color: #fff; }
+
+#modal-details img {
+    width: 100%;
+    max-width: 300px;
+    display: block;
+    margin: 10px auto;
+    border-radius: 5px;
+}
+
+#modal-details ol {
+    text-align: left;
+    padding-left: 20px;
+    line-height: 1.6;
 }
