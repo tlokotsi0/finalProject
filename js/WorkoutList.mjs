@@ -5,8 +5,12 @@ function exerciseTemplate(exercise) {
     const imageUrl = `https://exercisedb.p.rapidapi.com/image/${exercise.id}?rapidapi-key=${apiKey}`;
 
     return `<li class="exercise-card">
-        <img src="${imageUrl}" alt="${exercise.name}" loading="lazy" 
-             onerror="this.src='https://placehold.co/300x300?text=Image+Not+Found'">
+        <div class="image-container">
+            <img src="${imageUrl}" 
+                 alt="${exercise.name}" 
+                 loading="lazy"
+                 onerror="this.src='https://placehold.co/300x300?text=Image+Not+Available'">
+        </div>
         <h3 class="exercise-name">${exercise.name}</h3>
         <p class="exercise-target">Target: ${exercise.target}</p>
         <button class="add-to-routine">Add to Routine</button>
