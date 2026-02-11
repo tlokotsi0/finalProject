@@ -61,4 +61,27 @@ export default class ExternalServices {
     const response = await fetch(`https://${this.host}/exercises/bodyPart/${bodyPart}`, options);
     return await this.convertToJSON(response);
     }
+
+
+// WORKING ON THE SECOND API
+    async getCaloriesBurned(activity, weight, duration) {
+        const options = {
+            method: 'GET',
+            headers: {
+                'x-rapidapi-key': 'bmJ4zPaIOTSQo1ppL32iS1KCZUAfOIROufFOVe1j',
+                'x-rapidapi-host': 'calories-burned-by-api-ninjas.p.rapidapi.com'
+            }
+        };
+
+        try {
+            const response = await fetch(
+                `https://calories-burned-by-api-ninjas.p.rapidapi.com/v1/caloriesburned?activity=${activity}&weight=${weight}&duration=${duration}`, 
+                options
+            );
+            const data = await response.json();
+            return data;
+        } catch (error) {
+            console.error("Error fetching calories:", error);
+        }
+    } 
 }

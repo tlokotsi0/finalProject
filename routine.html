@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlexFlow | My Routine</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/routine-page.js" type="module"></script>
+</head>
+<body>
+    <header>
+        <h1>My Custom Routine</h1>
+        <nav>
+            <a href="index.html" class="nav-link">← Back to Search</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="calorie-calculator">
+            <h3>🔥 Workout Summary</h3>
+            <div class="calc-inputs">
+                <div class="input-group">
+                    <label for="user-weight">Weight (lbs):</label>
+                    <input type="number" id="user-weight" placeholder="150">
+                </div>
+                <div class="input-group">
+                    <label for="total-duration">Minutes per exercise:</label>
+                    <input type="number" id="total-duration" placeholder="5">
+                </div>
+                <button id="calc-calories-btn">Calculate Total Burn</button>
+            </div>
+            <div id="calorie-result" class="hidden">
+                <p>Total Estimated Burn: <span id="burn-value">0</span> kcal</p>
+            </div>
+        </section>
+        <ul class="routine-list" id="routine-list">
+            </ul>
+    </main>
+</body>
+</html>

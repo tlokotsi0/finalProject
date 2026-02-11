@@ -9,23 +9,31 @@
     </head>
 
     <body>
-        <header>
-            <nav>
-              <h1>Flex<span>Flow</span></h1>
-                <div class="search-wrapper">
-                    <div class="search-container">
-                        <input type="text" id="search-input" placeholder="Search body part (e.g., waist, cardio)...">
-                        <button id="search-btn">
-                            <span class = "search-icon">🔍</span>Search
-                        </button>
-                    </div>
+        <header class="main-header">
+            <div class="top-bar">
+                <div class="logo">
+                    <h1>Flex<span>Flow</span></h1>
                 </div>
+                <nav class="user-nav">
+                    <a href="routine.html" class="routine-nav-btn">
+                        <span class="icon">📋</span> My Routine
+                    </a>
+                </nav>
+            </div>
 
-                 <div class="genre-bar" id="muscle-filters">
-                      <button data-muscle="abs">Abs</button>
-                      <button data-muscle="biceps">Biceps</button>
+            <div class="search-wrapper">
+                <div class="search-container">
+                    <input type="text" id="search-input" placeholder="Search body part (waist, cardio...)">
+                    <button id="search-btn">
+                        <span class="search-icon">🔍</span> Search
+                    </button>
                 </div>
-            </nav>
+            </div>
+
+            <div class="genre-bar" id="muscle-filters">
+                <button data-muscle="abs">Abs</button>
+                <button data-muscle="biceps">Biceps</button>
+            </div>
         </header>
 
         <main class="container">
