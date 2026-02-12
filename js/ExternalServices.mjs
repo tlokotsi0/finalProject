@@ -1,3 +1,4 @@
+
 export default class ExternalServices {
     constructor() {
         this.apiKey = 'c68ad3903dmsh3834323f3cbd19cp12047bjsnde4c82474c93'; 
@@ -68,7 +69,7 @@ export default class ExternalServices {
         const options = {
             method: 'GET',
             headers: {
-                'x-rapidapi-key': 'bmJ4zPaIOTSQo1ppL32iS1KCZUAfOIROufFOVe1j',
+                'x-rapidapi-key': 'c68ad3903dmsh3834323f3cbd19cp12047bjsnde4c82474c93',
                 'x-rapidapi-host': 'calories-burned-by-api-ninjas.p.rapidapi.com'
             }
         };
