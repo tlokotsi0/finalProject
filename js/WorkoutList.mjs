@@ -22,7 +22,7 @@ export default class WorkoutList {
     }
 
     async init(searchTerm, type = "target") {
-        this.listElement.innerHTML = "<li>Loading...</li>";
+        this.listElement.innerHTML = "<li>Loading Exercises...</li>";
         
         try {
             let list = [];
@@ -30,37 +30,50 @@ export default class WorkoutList {
                 list = await this.dataSource.getExerciseData(searchTerm);
             } else if (type === "bodyPart") {
                 list = await this.dataSource.getExercisesByBodyPart(searchTerm);
+            } else if (type === "equipment") {
+                list = await this.dataSource.getExercisesByEquipment(searchTerm);
             }
 
             if (list && list.length > 0) {
                 const limitedList = list.slice(0, 20);
                 this.renderList(limitedList);
             } else {
-                this.listElement.innerHTML = "<li>No exercises found. Try 'waist', 'shoulders', or 'cardio'.</li>";
+                this.listElement.innerHTML = "<li>No exercises found. Try 'waist', 'shoulders', or 'body weight'.</li>";
             }
         } catch (err) {
-            console.error("REAL ERROR:", err);
-            this.listElement.innerHTML = `<li>${err.message}</li>`;
-            }
+            console.error("Fetch Error:", err);
+            this.listElement.innerHTML = `<li>Error loading data: ${err.message}</li>`;
+        }
     }
 
     async renderList(list) {
         renderListWithTemplate(exerciseTemplate, this.listElement, list, true);
 
         const cards = this.listElement.querySelectorAll(".exercise-card");
+         
+        const currentRoutine = this.routine.getRoutine() || [];
+        const routineIds = currentRoutine.map(item => item.id.toString());
 
         for (let i = 0; i < cards.length; i++) {
             const card = cards[i];
             const exercise = list[i];
-
+            const img = card.querySelector(".exercise-img"); 
+            const btn = card.querySelector(".add-to-routine");
+ 
             img.src = exercise.gifUrl || "https://placehold.co/300x300?text=No+Preview";
+            
+            if (routineIds.includes(exercise.id.toString())) {
+                btn.textContent = "✅ In Routine";
+                btn.classList.add("added");
+                btn.style.backgroundColor = "#2ecc71";
+            }
+
             card.addEventListener("click", (e) => {
                 if (e.target.tagName !== "BUTTON") {
                     this.showModal(exercise);
                 }
             });
 
-            const btn = card.querySelector(".add-to-routine");
             btn.addEventListener("click", (e) => {
                 e.stopPropagation();
                 this.addToRoutineHandler(exercise, btn);
@@ -74,15 +87,13 @@ export default class WorkoutList {
         if (result.success) {
             button.textContent = "✅ Added!";
             button.style.backgroundColor = "#2ecc71";
+            button.classList.add("added");
         } else {
             button.textContent = "⚠ In Routine";
             button.style.backgroundColor = "#e67e22";
         }
 
-        setTimeout(() => {
-            button.textContent = "Add to Routine";
-            button.style.backgroundColor = "";
-        }, 2000);
+        
     }
 
     showModal(exercise) {
